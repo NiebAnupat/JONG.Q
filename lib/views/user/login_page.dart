@@ -4,8 +4,8 @@ import 'package:jong_q/views/role_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/admin/home_page.dart';
 
-class AdminLogin extends StatelessWidget {
-  const AdminLogin({super.key});
+class UserLogin extends StatelessWidget {
+  const UserLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class AdminLogin extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 150),
                 child: Column(
                   children: [
-                    Text("ผู้ดูแลระบบ",
+                    Text("นักศึกษา",
                         style: GoogleFonts.notoSansThai(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -112,9 +112,7 @@ class AdminLogin extends StatelessWidget {
 
                     // login button
                     ElevatedButton(
-                        onPressed: () {
-                          Get.to(AdminHome());
-                        },
+                        onPressed: () {},
                         // ignore: sort_child_properties_last
                         child: Text("Login",
                             style: GoogleFonts.notoSansThai(

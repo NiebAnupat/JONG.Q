@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
+import 'user/login_page.dart';
+import 'admin/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'admin/login_page.dart';
 
 class RolePage extends StatelessWidget {
   const RolePage({super.key});
@@ -51,7 +52,9 @@ class RolePage extends StatelessWidget {
 
                     // button for user
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(UserLogin());
+                        },
                         // ignore: sort_child_properties_last
                         child: Text("สำหรับนักศึกษา",
                             style: GoogleFonts.notoSansThai(
