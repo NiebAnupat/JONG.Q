@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:jong_q/views/role_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/views/user/member_page.dart';
 
 class UserLogin extends StatelessWidget {
   const UserLogin({super.key});
@@ -111,7 +112,9 @@ class UserLogin extends StatelessWidget {
 
                     // login button
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(MemberPage());
+                        },
                         // ignore: sort_child_properties_last
                         child: Text("Login",
                             style: GoogleFonts.notoSansThai(
