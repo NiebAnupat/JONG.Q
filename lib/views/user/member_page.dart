@@ -1,5 +1,8 @@
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/views/user/login_page.dart';
+import 'package:jong_q/views/user/new_member.dart';
 
 class MemberPage extends StatefulWidget {
   const MemberPage({super.key});
@@ -15,6 +18,30 @@ class _MemberPageState extends State<MemberPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(235, 251, 131, 57),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Color.fromARGB(235, 251, 131, 57),
+              size: 30,
+            )),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.offAll(() => UserLogin());
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Color.fromARGB(255, 255, 255, 255),
+                size: 30,
+              )),
+        ],
+      ),
       body: SafeArea(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -39,7 +66,9 @@ class _MemberPageState extends State<MemberPage> {
             Visibility(
               visible: isVisible,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => NewMember());
+                  },
                   // ignore: sort_child_properties_last
                   child: Text("รายใหม่",
                       style: GoogleFonts.notoSansThai(

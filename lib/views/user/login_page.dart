@@ -11,32 +11,27 @@ class UserLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(235, 251, 131, 57),
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Get.off(() => const RolePage());
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Color.fromARGB(255, 255, 255, 255),
+              size: 30,
+            )),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Get.off(() => const RolePage());
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      size: 30,
-                    )),
-              ],
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-
             // Username
             Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 150),
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 200),
                 child: Column(
                   children: [
                     Text("นักศึกษา",
