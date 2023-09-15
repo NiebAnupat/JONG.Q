@@ -14,48 +14,42 @@ class AdminHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Text("JONG.Q",
-                        style: GoogleFonts.notoSansThai(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 0, 0, 0))),
-                    IconButton(
-                        onPressed: () {
-                          Get.off(() => const AdminLogin());
-                        },
-                        icon: const Icon(
-                          Icons.logout,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          size: 30,
-                        )),
-                  ],
-                )),
-
-            // student list
-            Expanded(
-              child: ListView.builder(
-                  itemCount: name.length,
-                  itemBuilder: (context, index) {
-                    return StudentBox(
-                      child: name[index],
-                    );
-                  }),
-            )
-          ],
-        ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text("JONG.Q",
+            style: GoogleFonts.notoSansThai(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 0, 0, 0))),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.off(() => const AdminLogin());
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Color.fromARGB(255, 0, 0, 0),
+                size: 30,
+              )),
+        ],
       ),
+      body: SafeArea(
+          child:
+              // student list
+              Expanded(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: ListView.builder(
+              itemCount: name.length,
+              itemBuilder: (context, index) {
+                return StudentBox(
+                  child: name[index],
+                );
+              }),
+        ),
+      )),
     );
   }
 }

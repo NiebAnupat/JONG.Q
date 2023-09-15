@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StudentBox extends StatelessWidget {
   final String child;
@@ -20,15 +21,15 @@ class StudentBox extends StatelessWidget {
             child: ListTile(
               title: Text(
                 child,
-                style: const TextStyle(
+                style: GoogleFonts.notoSansThai(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 '094-123-4567',
-                style: TextStyle(
-                    fontSize: 15,
+                style: GoogleFonts.notoSansThai(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),

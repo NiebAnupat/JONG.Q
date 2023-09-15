@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:jong_q/views/role_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/views/user/member_page.dart';
 
 class UserLogin extends StatelessWidget {
   const UserLogin({super.key});
@@ -10,32 +11,27 @@ class UserLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(235, 251, 131, 57),
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Get.off(() => const RolePage());
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Color.fromARGB(255, 255, 255, 255),
+              size: 30,
+            )),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Get.off(() => const RolePage());
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      size: 30,
-                    )),
-              ],
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-
             // Username
             Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 150),
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 200),
                 child: Column(
                   children: [
                     Text("นักศึกษา",
@@ -111,7 +107,9 @@ class UserLogin extends StatelessWidget {
 
                     // login button
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(MemberPage());
+                        },
                         // ignore: sort_child_properties_last
                         child: Text("Login",
                             style: GoogleFonts.notoSansThai(
