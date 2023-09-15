@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class StudentBox extends StatelessWidget {
   final String child;
-
-  StudentBox({required this.child});
+  const StudentBox({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +25,9 @@ class StudentBox extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              subtitle: Text(
+              subtitle: const Text(
                 '094-123-4567',
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),

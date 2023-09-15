@@ -31,7 +31,7 @@ class RolePage extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () {
                           // get to admin login page
-                          Get.to(AdminLogin());
+                          Get.to(const AdminLogin());
                         },
                         // ignore: sort_child_properties_last
                         child: Text("สำหรับผู้ดูแลระบบ",
@@ -40,7 +40,8 @@ class RolePage extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: const Color.fromARGB(255, 0, 0, 0))),
                         style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(235, 255, 255, 255),
+                          backgroundColor:
+                              const Color.fromARGB(235, 255, 255, 255),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
@@ -53,7 +54,7 @@ class RolePage extends StatelessWidget {
                     // button for user
                     ElevatedButton(
                         onPressed: () {
-                          Get.to(UserLogin());
+                          Get.to(const UserLogin());
                         },
                         // ignore: sort_child_properties_last
                         child: Text("สำหรับนักศึกษา",
@@ -62,7 +63,8 @@ class RolePage extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: const Color.fromARGB(255, 0, 0, 0))),
                         style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(235, 255, 255, 255),
+                          backgroundColor:
+                              const Color.fromARGB(235, 255, 255, 255),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),

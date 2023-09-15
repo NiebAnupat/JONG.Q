@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'views/role_page.dart';
 
 void main() {
-  runApp(GetMaterialApp(home: MyApp()));
+  runApp(GetMaterialApp(home: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: RolePage(),
+      home: const RolePage(),
     );
   }
 }

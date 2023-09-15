@@ -120,9 +120,11 @@ class AdminLogin extends StatelessWidget {
                             style: GoogleFonts.notoSansThai(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 255, 255, 255))),
+                                color:
+                                    const Color.fromARGB(255, 255, 255, 255))),
                         style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(235, 251, 131, 57),
+                          backgroundColor:
+                              const Color.fromARGB(235, 251, 131, 57),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
