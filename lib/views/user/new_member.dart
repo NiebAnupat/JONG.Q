@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/lib/MyColor.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/user/message_page.dart';
 
 class NewMember extends StatelessWidget {
@@ -27,9 +27,18 @@ class NewMember extends StatelessWidget {
             child: SingleChildScrollView(
                 child: Column(children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 180),
+            padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 120),
             child: Column(
               children: [
+                Text("นักศึกษารายใหม่",
+                    style: GoogleFonts.notoSansThai(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 0, 0, 0))),
+                const SizedBox(
+                  height: 20,
+                ),
+
                 // name and surname
                 TextField(
                   style: const TextStyle(
@@ -143,7 +152,7 @@ class NewMember extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 160,
+                  height: 140,
                 ),
 
                 // book queue

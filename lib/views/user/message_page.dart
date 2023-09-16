@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/lib/MyColor.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MessagePage extends StatelessWidget {
@@ -68,6 +68,7 @@ class MessagePage extends StatelessWidget {
                         style: GoogleFonts.notoSansThai(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
                             color: MyColor.primaryColor))),
               ]),
             ),

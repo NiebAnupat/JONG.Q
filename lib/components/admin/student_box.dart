@@ -16,7 +16,7 @@ class StudentBox extends StatelessWidget {
         width: Get.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: const Color.fromARGB(255, 218, 133, 76)),
+            color: const Color(0xffFE7C28)),
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             child: ListTile(

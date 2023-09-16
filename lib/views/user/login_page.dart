@@ -75,6 +75,7 @@ class UserLogin extends StatelessWidget {
                     ),
 
                     // password
+                    // buildText("Password"),
                     TextField(
                       style: const TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),

@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/lib/MyColor.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/user/login_page.dart';
 import 'package:jong_q/views/user/new_member.dart';
+import 'package:jong_q/views/user/old_member.dart';
 
 class MemberPage extends StatefulWidget {
   const MemberPage({super.key});
@@ -49,17 +50,20 @@ class _MemberPageState extends State<MemberPage> {
             Visibility(
               visible: isVisible,
               child: ElevatedButton(
-                  onPressed: () {},
-                  // ignore: sort_child_properties_last
-                  child: Text("รายเก่า",
-                      style: GoogleFonts.notoSansThai(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 0, 0, 0))),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(235, 255, 255, 255),
-                    minimumSize: const Size(300, 100),
-                  )),
+                onPressed: () {
+                  Get.to(() => const OldMember());
+                },
+                // ignore: sort_child_properties_last
+                child: Text("รายเก่า",
+                    style: GoogleFonts.notoSansThai(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 0, 0, 0))),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(235, 255, 255, 255),
+                  minimumSize: const Size(300, 100),
+                ),
+              ),
             ),
             const SizedBox(
               height: 8,
