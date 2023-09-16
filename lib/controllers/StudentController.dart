@@ -1,5 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/components/loader/gf_loader.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:jong_q/controllers/QueueContorller.dart';
+import 'package:jong_q/models/Queue.dart';
 import 'package:jong_q/models/Student.dart';
+import 'package:jong_q/providers/Student.dart';
+import 'package:uuid/uuid.dart';
 
 class StudentController extends GetxController {
   final RxList<Student> _student = <Student>[
@@ -17,5 +24,74 @@ class StudentController extends GetxController {
 
   List<Student> get student => _student;
 
-  void addStudent(Student newStudent) {}
+  Future<void> addStudent(Student newStudent) async {
+    try {
+      Get.defaultDialog(
+          title: 'กำลังบันทึกข้อมูลนักศึกษา',
+          content: const Center(
+              child: GFLoader(
+            type: GFLoaderType.ios,
+          )),
+          contentPadding: const EdgeInsets.all(20),
+          barrierDismissible: false);
+      await StudentProvider.create(newStudent);
+      Get.back();
+      // show success dialog
+      Get.defaultDialog(
+        title: 'บันทึกข้อมูลสำเร็จ',
+        content: const Center(
+            child: Icon(
+          Icons.check_circle,
+          color: Colors.green,
+          size: 100,
+        )),
+        contentPadding: const EdgeInsets.all(20),
+        barrierDismissible: false,
+      );
+      await Future.delayed(const Duration(milliseconds: 15000));
+      Get.back();
+
+      // update student list
+      _student.add(newStudent);
+
+      // show adding queue dialog
+      Get.defaultDialog(
+        title: 'กำลังบันทึกคิว',
+        content: const Center(
+            child: GFLoader(
+          type: GFLoaderType.ios,
+        )),
+        contentPadding: const EdgeInsets.all(20),
+        barrierDismissible: false,
+      );
+
+      final Queue newQueue = Queue(
+        queue_id: const Uuid().v4(),
+        stu_id: newStudent.stu_id,
+        timestamp: DateTime.now().toString(),
+        isNotify: false,
+      );
+
+      // add new queue
+      await QueueController().addQueue(newQueue);
+
+      // show success dialog
+      Get.back();
+      Get.defaultDialog(
+        title: 'บันทึกคิวสำเร็จ',
+        content: const Center(
+            child: Icon(
+          Icons.check_circle,
+          color: Colors.green,
+          size: 100,
+        )),
+        contentPadding: const EdgeInsets.all(20),
+        barrierDismissible: false,
+      );
+      await Future.delayed(const Duration(milliseconds: 15000));
+      Get.back();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:jong_q/lib/MyColor.dart';
+import 'package:jong_q/lib/AppColor.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/user/login_page.dart';
 import 'package:jong_q/views/user/new_member.dart';
@@ -19,7 +19,7 @@ class _MemberPageState extends State<MemberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColor.primaryColor,
+      backgroundColor: AppColor.primaryColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -29,7 +29,7 @@ class _MemberPageState extends State<MemberPage> {
             },
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
-              color: MyColor.primaryColor,
+              color: AppColor.primaryColor,
               size: 30,
             )),
         actions: [
@@ -97,7 +97,7 @@ class _MemberPageState extends State<MemberPage> {
         backgroundColor: Colors.white,
         child: const Icon(
           Icons.add,
-          color: MyColor.primaryColor,
+          color: AppColor.primaryColor,
           size: 55,
         ),
       ),

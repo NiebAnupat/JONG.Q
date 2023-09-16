@@ -1,10 +1,16 @@
+import 'package:get/get.dart';
 import 'package:jong_q/models/Student.dart';
 import 'package:jong_q/providers/GoogleSheet.dart';
 
 class StudentProvider {
   static Future create(Student newStu) async {
-    final studentSheet = await GoogleSheet.studentSheet;
-    await studentSheet.values.map.appendRow(newStu.toJson());
+    try {
+      final studentSheet = await GoogleSheet.studentSheet;
+      await studentSheet.values.map.appendRow(newStu.toJson());
+    } catch (e) {
+      Get.back();
+      rethrow;
+    }
   }
 
   static Future get(String id) async {

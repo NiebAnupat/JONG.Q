@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jong_q/lib/MyColor.dart';
+import 'package:jong_q/lib/AppColor.dart';
 import 'package:jong_q/views/admin/home_page.dart';
 import 'package:jong_q/views/role_page.dart';
 
@@ -16,7 +16,7 @@ class AdminLogin extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: MyColor.primaryColor,
+        backgroundColor: AppColor.primaryColor,
         elevation: 0,
         leading: IconButton(
             onPressed: () {
@@ -111,7 +111,7 @@ class AdminLogin extends StatelessWidget {
                   ElevatedButton(
                       onPressed: login,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: MyColor.primaryColor,
+                        backgroundColor: AppColor.primaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),

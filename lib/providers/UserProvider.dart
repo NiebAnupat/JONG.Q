@@ -24,7 +24,7 @@ class UserProvider {
       var admin = allRows
           .map((e) => User.fromJson(e))
           .firstWhere((e) => e.username == username && e.password == password);
-      // Get.back();
+      Get.back();
       return admin;
     } catch (e) {
       Get.back();

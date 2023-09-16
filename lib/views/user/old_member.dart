@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:jong_q/lib/MyColor.dart';
+import 'package:jong_q/lib/AppColor.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/user/message_page.dart';
 import 'package:jong_q/components/user/info_box.dart';
@@ -12,7 +12,7 @@ class OldMember extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: MyColor.primaryColor,
+          backgroundColor: AppColor.primaryColor,
           elevation: 0,
           leading: IconButton(
               onPressed: () {
@@ -38,6 +38,7 @@ class OldMember extends StatelessWidget {
                         color: const Color.fromARGB(255, 0, 0, 0))),
                 // search
                 TextField(
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelStyle: TextStyle(
                       color:
@@ -74,7 +75,7 @@ class OldMember extends StatelessWidget {
                         color: const Color.fromARGB(255, 255, 255, 255)),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: MyColor.primaryColor,
+                    backgroundColor: AppColor.primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),
@@ -98,7 +99,7 @@ class OldMember extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: MyColor.primaryColor,
+                        backgroundColor: AppColor.primaryColor,
                         minimumSize: const Size(100, 50),
                       ),
                       child: Text("แก้ไข",
@@ -126,7 +127,7 @@ class OldMember extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: const Color.fromARGB(255, 255, 255, 255))),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: MyColor.primaryColor,
+                      backgroundColor: AppColor.primaryColor,
                       minimumSize: const Size(200, 80),
                     )),
               ],

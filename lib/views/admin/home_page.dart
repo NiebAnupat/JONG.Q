@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:jong_q/components/admin/student_box.dart';
 import 'package:jong_q/controllers/QueueContorller.dart';
 import 'package:jong_q/models/Student.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/admin/login_page.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class AdminHome extends StatelessWidget {
   AdminHome({super.key});
@@ -14,6 +16,33 @@ class AdminHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // request SMS permission
+    void requestPermission() async {
+      final status = await Permission.sms.status;
+      if (status.isDenied) {
+        Get.snackbar(
+            'ไม่สามารถเข้าถึง SMS ได้', 'กรุณาเปิดสิทธิ์การเข้าถึง SMS',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 2));
+        await Permission.sms.request();
+      } else {
+        if (kDebugMode) {
+          print("SMS Permission Granted");
+        }
+      }
+    }
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      // do something
+      if (kDebugMode) {
+        print("Build Completed");
+      }
+      requestPermission();
+    });
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -48,7 +77,7 @@ class AdminHome extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 0, 0, 0))),
               const Spacer(),
-              Text("${queueController.queue.length}\t\t\t\t\tคิว",
+              Text("${queueController.queue.value.length}\t\t\t\t\tคิว",
                   style: GoogleFonts.notoSansThai(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -72,7 +101,7 @@ class AdminHome extends StatelessWidget {
                     );
                   } else {
                     return ListView.builder(
-                      itemCount: queueController.queue.length,
+                      itemCount: queueController.queue.value.length,
                       itemBuilder: (context, index) {
                         return StudentBox(
                           student: queueController.getStudentInQueue()[index],

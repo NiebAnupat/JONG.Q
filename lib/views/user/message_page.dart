@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:jong_q/lib/MyColor.dart';
+import 'package:jong_q/lib/AppColor.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,7 +11,7 @@ class MessagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: MyColor.primaryColor,
+          backgroundColor: AppColor.primaryColor,
           elevation: 0,
           leading: IconButton(
               onPressed: () {
@@ -50,10 +50,10 @@ class MessagePage extends StatelessWidget {
 
                 Text("รบกวรทำแบบประเมิณความพึงพอใจ",
                     style: GoogleFonts.notoSansThai(
-                        fontSize: 20, color: MyColor.primaryColor)),
+                        fontSize: 20, color: AppColor.primaryColor)),
                 Text("เพื่อให้ทางเรานำไปปรับปรุงให้ดียิ่งขึ้น",
                     style: GoogleFonts.notoSansThai(
-                        fontSize: 20, color: MyColor.primaryColor)),
+                        fontSize: 20, color: AppColor.primaryColor)),
 
                 // button for link
                 TextButton(
@@ -69,7 +69,7 @@ class MessagePage extends StatelessWidget {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
-                            color: MyColor.primaryColor))),
+                            color: AppColor.primaryColor))),
               ]),
             ),
           ),
