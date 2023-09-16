@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:jong_q/lib/MyColor.dart';
 import 'package:jong_q/views/role_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/user/member_page.dart';
@@ -12,7 +13,7 @@ class UserLogin extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(235, 251, 131, 57),
+        backgroundColor: const Color(0xffFE7C28),
         elevation: 0,
         leading: IconButton(
             onPressed: () {
@@ -108,7 +109,7 @@ class UserLogin extends StatelessWidget {
                     // login button
                     ElevatedButton(
                         onPressed: () {
-                          Get.to(MemberPage());
+                          Get.to(const MemberPage());
                         },
                         // ignore: sort_child_properties_last
                         child: Text("Login",
@@ -118,8 +119,7 @@ class UserLogin extends StatelessWidget {
                                 color:
                                     const Color.fromARGB(255, 255, 255, 255))),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(235, 251, 131, 57),
+                          backgroundColor: MyColor.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),

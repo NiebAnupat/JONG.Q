@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/lib/MyColor.dart';
 import 'package:jong_q/views/user/message_page.dart';
 
 class NewMember extends StatelessWidget {
@@ -10,7 +11,7 @@ class NewMember extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(235, 251, 131, 57),
+          backgroundColor: MyColor.primaryColor,
           elevation: 0,
           leading: IconButton(
               onPressed: () {
@@ -136,8 +137,7 @@ class NewMember extends StatelessWidget {
                                 color:
                                     const Color.fromARGB(255, 255, 255, 255))),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(235, 251, 131, 57),
+                          backgroundColor: MyColor.primaryColor,
                           minimumSize: const Size(115, 60),
                         )),
                   ],
@@ -158,7 +158,7 @@ class NewMember extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: const Color.fromARGB(255, 255, 255, 255))),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(235, 251, 131, 57),
+                      backgroundColor: MyColor.primaryColor,
                       minimumSize: const Size(200, 80),
                     )),
               ],

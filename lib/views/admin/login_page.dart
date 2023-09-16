@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/lib/MyColor.dart';
 import 'package:jong_q/views/admin/home_page.dart';
 import 'package:jong_q/views/role_page.dart';
 
@@ -11,11 +12,11 @@ class AdminLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(235, 251, 131, 57),
+        backgroundColor: MyColor.primaryColor,
         elevation: 0,
         leading: IconButton(
             onPressed: () {
-              Get.off(() => RolePage());
+              Get.off(() => const RolePage());
             },
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
@@ -117,8 +118,7 @@ class AdminLogin extends StatelessWidget {
                                 color:
                                     const Color.fromARGB(255, 255, 255, 255))),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(235, 251, 131, 57),
+                          backgroundColor: MyColor.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),

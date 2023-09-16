@@ -41,7 +41,6 @@ dependencies:
   getwidget: ^4.0.0
   styled_widget: ^0.4.1
   url_launcher: ^6.1.14
-  flutter_sms: ^2.3.3
 
 
 dev_dependencies:
