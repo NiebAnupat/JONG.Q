@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/models/Student.dart';
 
 class StudentBox extends StatelessWidget {
-  final String child;
-  const StudentBox({super.key, required this.child});
+  final Student student;
+  const StudentBox({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
+      padding: const EdgeInsets.only(bottom: 15, left: 10, right: 10),
       child: Container(
         height: 105,
         width: Get.width,
@@ -20,14 +21,14 @@ class StudentBox extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             child: ListTile(
               title: Text(
-                child,
+                student.stu_name!,
                 style: GoogleFonts.notoSansThai(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
               subtitle: Text(
-                '094-123-4567',
+                student.stu_tel!,
                 style: GoogleFonts.notoSansThai(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

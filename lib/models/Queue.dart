@@ -1,24 +1,24 @@
 class Queue {
   String? queue_id;
   String? stu_id;
-  String? queue_date = DateTime.now().toString();
-  bool? queue_status = false;
+  String? timestamp = DateTime.now().toString();
+  bool? isNotify = false;
 
-  Queue({this.queue_id, this.stu_id, this.queue_date, this.queue_status});
+  Queue({this.queue_id, this.stu_id, this.timestamp, this.isNotify});
 
   Queue.fromJson(Map<String, dynamic> json) {
     queue_id = json['queue_id'];
     stu_id = json['stu_id'];
-    queue_date = json['queue_date'];
-    queue_status = json['queue_status'];
+    timestamp = json['timestamp'];
+    isNotify = json['isNotify'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['queue_id'] = queue_id;
     data['stu_id'] = stu_id;
-    data['queue_date'] = queue_date;
-    data['queue_status'] = queue_status;
+    data['timestamp'] = timestamp;
+    data['isNotify'] = isNotify;
     return data;
   }
 }

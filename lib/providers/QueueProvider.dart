@@ -14,7 +14,7 @@ class QueueProvider {
       return null;
     }
     var queue = allRows.map((e) => Queue.fromJson(e)).firstWhere(
-          (e) => e.queue_id == id,
+          (e) => e.queue_id == id && e.isNotify == false,
         );
     return queue;
   }

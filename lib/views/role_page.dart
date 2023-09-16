@@ -31,7 +31,7 @@ class RolePage extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () {
                           // get to admin login page
-                          Get.to(const AdminLogin());
+                          Get.to(() => const AdminLogin());
                         },
                         // ignore: sort_child_properties_last
                         child: Text("สำหรับผู้ดูแลระบบ",
@@ -54,7 +54,7 @@ class RolePage extends StatelessWidget {
                     // button for user
                     ElevatedButton(
                         onPressed: () {
-                          Get.to(const UserLogin());
+                          Get.to(() => const UserLogin());
                         },
                         // ignore: sort_child_properties_last
                         child: Text("สำหรับนักศึกษา",

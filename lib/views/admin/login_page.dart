@@ -10,6 +10,10 @@ class AdminLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void login() async {
+      Get.off(() => AdminHome());
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColor.primaryColor,
@@ -24,111 +28,105 @@ class AdminLogin extends StatelessWidget {
               size: 30,
             )),
       ),
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Username
-            Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 200),
-                child: Column(
-                  children: [
-                    Text("ผู้ดูแลระบบ",
-                        style: GoogleFonts.notoSansThai(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 0, 0, 0))),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    // username
-                    TextField(
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
-                      decoration: InputDecoration(
-                        labelText: "Username",
-                        labelStyle: TextStyle(
+      body: Column(
+        children: [
+          // Username
+          Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 40, vertical: 200),
+              child: Column(
+                children: [
+                  Text("ผู้ดูแลระบบ",
+                      style: GoogleFonts.notoSansThai(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 0, 0, 0))),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  // username
+                  TextField(
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                    decoration: InputDecoration(
+                      labelText: "Username",
+                      labelStyle: TextStyle(
+                        color:
+                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
                           color: const Color.fromARGB(255, 0, 0, 0)
                               .withOpacity(0.8),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 1,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 0, 0, 0)
-                                .withOpacity(0.8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 0, 0, 0)
-                                .withOpacity(0.8),
-                          ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
 
-                    // password
-                    TextField(
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(
+                  // password
+                  TextField(
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                      labelStyle: TextStyle(
+                        color:
+                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
                           color: const Color.fromARGB(255, 0, 0, 0)
                               .withOpacity(0.8),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 1,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 0, 0, 0)
-                                .withOpacity(0.8),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 0, 0, 0)
-                                .withOpacity(0.8),
-                          ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
 
-                    // login button
-                    ElevatedButton(
-                        onPressed: () {
-                          Get.to(() => AdminHome());
-                        },
-                        // ignore: sort_child_properties_last
-                        child: Text("Login",
-                            style: GoogleFonts.notoSansThai(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color:
-                                    const Color.fromARGB(255, 255, 255, 255))),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: MyColor.primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          minimumSize: const Size(240, 55),
-                        )),
-                  ],
-                )),
-          ],
-        ),
-      )),
+                  // login button
+                  ElevatedButton(
+                      onPressed: login,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MyColor.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        minimumSize: const Size(240, 55),
+                      ),
+                      child: Text("Login",
+                          style: GoogleFonts.notoSansThai(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  const Color.fromARGB(255, 255, 255, 255)))),
+                ],
+              )),
+        ],
+      ),
     );
   }
 }
