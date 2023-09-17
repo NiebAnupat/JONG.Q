@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:jong_q/models/Queue.dart';
 import 'package:jong_q/models/Student.dart';

@@ -23,7 +23,8 @@ class StudentBox extends StatelessWidget {
   Widget build(BuildContext context) {
     void sendSMS() async {
       if (await p.Permission.sms.status.isGranted) {
-        final phoneNumber = student.stu_tel!;
+        final phoneNumber = student.stu_tel!.replaceFirst('0', '+66');
+        print(phoneNumber);
         final message =
             'แจ้งนักศึกษา ชื่อ ${student.stu_name}\nรหัสนักศึกษา ${student.stu_id}\nขณะนี้กำลังจะถึงคิวของคุณแล้ว\nกรุณาเดินทางมาส่งเอกสารภายใน 10 นาที\n*หากไม่มาภายในเวลาที่กำหนดขออนุญาตเรียกคิวถัดไป';
         SmsStatus result = await BackgroundSms.sendMessage(
