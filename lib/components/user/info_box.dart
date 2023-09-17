@@ -44,7 +44,7 @@ class InfoBox extends StatelessWidget {
                     width: 20,
                   ),
                   Obx(() => Text(
-                        studentController.selectedStudent.value?.stu_id ?? "",
+                        studentController.selectedStudent.value.stu_id ?? "",
                         style: GoogleFonts.notoSansThai(
                             fontSize: 18,
                             color: const Color.fromARGB(255, 0, 0, 0)),
@@ -66,13 +66,18 @@ class InfoBox extends StatelessWidget {
                   const SizedBox(
                     width: 25,
                   ),
-                  Obx(() => Text(
-                        studentController.selectedStudent.value?.stu_name ?? "",
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.notoSansThai(
-                            fontSize: 18,
-                            color: const Color.fromARGB(255, 0, 0, 0)),
-                      )),
+                  SizedBox(
+                    width: 160,
+                    child: Obx(() => Text(
+                          studentController.selectedStudent.value.stu_name ??
+                              "",
+                          // FIX: ovelflow not working
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.notoSansThai(
+                              fontSize: 18,
+                              color: const Color.fromARGB(255, 0, 0, 0)),
+                        )),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -91,7 +96,7 @@ class InfoBox extends StatelessWidget {
                     width: 18,
                   ),
                   Obx(() => Text(
-                        studentController.selectedStudent.value?.stu_tel ?? "",
+                        studentController.selectedStudent.value.stu_tel ?? "",
                         style: GoogleFonts.notoSansThai(
                             fontSize: 18,
                             color: const Color.fromARGB(255, 0, 0, 0)),

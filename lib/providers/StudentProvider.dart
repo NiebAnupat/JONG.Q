@@ -39,6 +39,32 @@ class StudentProvider {
     }
   }
 
+  // update student
+  static Future update(String id, Student newStu) async {
+    try {
+      final studentSheet = await GoogleSheet.studentSheet;
+      var allRows = await studentSheet.values.map.allRows();
+      if (allRows == null) {
+        return null;
+      }
+      var student = allRows.map((e) => Student.fromJson(e)).firstWhere(
+            (e) => e.stu_id == id,
+          );
+      if (student == null) {
+        return null;
+      }
+
+      var index = allRows.indexWhere((e) => e['stu_id'] == id);
+      if (index == -1) {
+        return null;
+      }
+      await studentSheet.values.map.insertRow(index + 3, newStu.toJson());
+      await studentSheet.deleteRow(index + 2);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   static Future<bool> isAlreadyExist(String id) async {
     try {
       final studentSheet = await GoogleSheet.studentSheet;

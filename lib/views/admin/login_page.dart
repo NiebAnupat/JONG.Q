@@ -52,7 +52,6 @@ class AdminLogin extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primaryColor,
-        elevation: 0,
         leading: IconButton(
             onPressed: () {
               Get.off(() => const RolePage());
@@ -65,10 +64,8 @@ class AdminLogin extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Username
           Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 40, vertical: 200),
+              padding: const EdgeInsets.only(left: 40, right: 40, top: 160),
               child: Column(
                 children: [
                   Text("ผู้ดูแลระบบ",
@@ -79,7 +76,6 @@ class AdminLogin extends StatelessWidget {
                   const SizedBox(
                     height: 35,
                   ),
-                  // username
                   TextField(
                     controller: usernameController,
                     style: GoogleFonts.notoSansThai(

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:jong_q/models/Queue.dart';
 import 'package:jong_q/models/Student.dart';
 import 'package:jong_q/providers/QueueProvider.dart';
-import 'package:jong_q/providers/Student.dart';
+import 'package:jong_q/providers/StudentProvider.dart';
 
 class QueueController extends GetxController {
   RxList<Queue> queue = <Queue>[].obs;
@@ -58,7 +58,8 @@ class QueueController extends GetxController {
             stu_id: oldQueue.stu_id,
             timestamp: oldQueue.timestamp,
             isNotify: true));
-    fetchQueue();
+    // fetchQueue();
+    queue.remove(oldQueue);
   }
 
   Future<List<Student>> getStudentInQueue() async {

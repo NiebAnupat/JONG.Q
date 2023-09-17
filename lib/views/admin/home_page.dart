@@ -109,29 +109,27 @@ class AdminHome extends StatelessWidget {
                     );
                   } else {
                     if (queueController.queue.isNotEmpty) {
-                      return ListView.builder(
-                        itemCount: queueController.queue.length,
-                        itemBuilder: (context, index) {
-                          return FutureBuilder(
-                              future: queueController.getStudentInQueue(),
-                              builder: (context,
-                                  AsyncSnapshot<List<Student>> sanpshot) {
-                                if (sanpshot.hasData) {
-                                  return StudentBox(
-                                    student: sanpshot.data![index],
-                                    queue:
-                                        queueController.queue.elementAt(index),
-                                    queueController: queueController,
-                                  );
-                                } else {
-                                  return const Center(
-                                    heightFactor: 13,
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
-                              });
-                        },
-                      );
+                      return FutureBuilder(
+                          future: queueController.getStudentInQueue(),
+                          builder:
+                              (context, AsyncSnapshot<List<Student>> sanpshot) {
+                            if (sanpshot.hasData) {
+                              return ListView.builder(
+                                  itemCount: queueController.queue.length,
+                                  itemBuilder: (context, index) {
+                                    return StudentBox(
+                                      student: sanpshot.data![index],
+                                      queue: queueController.queue[index],
+                                      queueController: queueController,
+                                    );
+                                  });
+                            } else {
+                              return const Center(
+                                heightFactor: 13,
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          });
                     } else {
                       return Center(
                         heightFactor: 13,

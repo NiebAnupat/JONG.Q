@@ -5,7 +5,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:jong_q/controllers/QueueContorller.dart';
 import 'package:jong_q/models/Queue.dart';
 import 'package:jong_q/models/Student.dart';
-import 'package:jong_q/providers/Student.dart';
+import 'package:jong_q/providers/StudentProvider.dart';
 import 'package:uuid/uuid.dart';
 
 class StudentController extends GetxController {
@@ -91,6 +91,33 @@ class StudentController extends GetxController {
       );
       await Future.delayed(const Duration(milliseconds: 15000));
       Get.back();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // update student
+  Future<void> updateStudent(Student newStudent) async {
+    try {
+      Get.defaultDialog(
+        title: 'กำลังค้นหาข้อมูล',
+        content: const Center(
+            child: GFLoader(
+          type: GFLoaderType.ios,
+        )),
+        contentPadding: const EdgeInsets.all(20),
+        barrierDismissible: false,
+      );
+
+      // update student list
+      await StudentProvider.update(newStudent.stu_id!, newStudent);
+      // update selected student
+      selectedStudent.value = newStudent;
+
+      Get.back();
+
+      // update student list
+      fetchStudent();
     } catch (e) {
       rethrow;
     }

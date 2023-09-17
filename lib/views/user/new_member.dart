@@ -7,7 +7,7 @@ import 'package:jong_q/lib/AppColor.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/models/Queue.dart';
 import 'package:jong_q/models/Student.dart';
-import 'package:jong_q/providers/Student.dart';
+import 'package:jong_q/providers/StudentProvider.dart';
 import 'package:jong_q/views/user/message_page.dart';
 import 'package:uuid/uuid.dart';
 

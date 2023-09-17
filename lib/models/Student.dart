@@ -19,10 +19,10 @@ class Student {
     return data;
   }
 
-  // fucntion to format tel number change first +66 to 0 use with json['stu_tel']
   String formatTel(String tel) {
-    if (tel.startsWith('66')) {
-      return tel.replaceFirst('66', '0');
+    // add 0 to first
+    if (tel.length == 9) {
+      tel = "0$tel";
     }
     return tel;
   }
