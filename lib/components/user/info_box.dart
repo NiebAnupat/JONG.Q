@@ -24,8 +24,49 @@ class InfoBox extends StatelessWidget {
               Text(
                 "ข้อมูลนักศึกษา",
                 style: GoogleFonts.notoSansThai(
-                    fontSize: 20, color: const Color.fromARGB(255, 0, 0, 0)),
-              )
+                    fontSize: 24, color: const Color.fromARGB(255, 0, 0, 0)),
+              ),
+              const SizedBox(
+                height: 45,
+              ),
+              // รหัสนักศึกษา
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("รหัสนักศึกษา : ",
+                      style: GoogleFonts.notoSansThai(
+                          fontSize: 18,
+                          color: const Color.fromARGB(255, 0, 0, 0))),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+
+              // ชื่อ-นามสกุล
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("ชื่อ-นามสกุล : ",
+                      style: GoogleFonts.notoSansThai(
+                          fontSize: 18,
+                          color: const Color.fromARGB(255, 0, 0, 0))),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+
+              // เบอร์โทรศัพท์
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("เบอร์โทรศัพท์ : ",
+                      style: GoogleFonts.notoSansThai(
+                          fontSize: 18,
+                          color: const Color.fromARGB(255, 0, 0, 0))),
+                ],
+              ),
             ],
           ),
         ),

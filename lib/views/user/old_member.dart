@@ -66,7 +66,8 @@ class OldMember extends StatelessWidget {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(Icons.search,
+                      color: Color.fromARGB(255, 255, 255, 255)),
                   label: Text(
                     "ค้นหา",
                     style: GoogleFonts.notoSansThai(
@@ -97,7 +98,9 @@ class OldMember extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        editDialog(context);
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColor.primaryColor,
                         minimumSize: const Size(100, 50),
@@ -135,4 +138,139 @@ class OldMember extends StatelessWidget {
           )
         ]))));
   }
+
+  void editDialog(context) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            title: Center(
+              child: Text(
+                "แก้ไขข้อมูล",
+                style: GoogleFonts.notoSansThai(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 0, 0, 0)),
+              ),
+            ),
+            // ignore: sized_box_for_whitespace
+            content: Container(
+              width: 350,
+              child: Wrap(
+                runSpacing: 15,
+                children: [
+                  // รหัสนักศึกษา
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "รหัสนักศึกษา",
+                      labelStyle: GoogleFonts.notoSansThai(
+                        color:
+                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+
+                  // ชื่อ-นามสกุล
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "ชื่อ-นามสกุล",
+                      labelStyle: GoogleFonts.notoSansThai(
+                        color:
+                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+
+                  // เบอร์โทรศัพท์
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "เบอร์โทรศัพท์",
+                      labelStyle: GoogleFonts.notoSansThai(
+                        color:
+                            const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 0, 0, 0)
+                              .withOpacity(0.8),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(),
+                  child: Text(
+                    "ยกเลิก",
+                    style: GoogleFonts.notoSansThai(
+                      color: Color.fromARGB(255, 215, 15, 15).withOpacity(0.8),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1,
+                    ),
+                  )),
+
+              // บันทึก
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "บันทึก",
+                    style: GoogleFonts.notoSansThai(
+                      color: Color.fromARGB(255, 17, 182, 19).withOpacity(0.8),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1,
+                    ),
+                  ))
+            ],
+          ));
 }
