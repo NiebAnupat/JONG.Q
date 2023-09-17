@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/controllers/StudentController.dart';
 
 class InfoBox extends StatelessWidget {
-  const InfoBox({super.key});
+  InfoBox({super.key});
 
+  final StudentController studentController = Get.put(StudentController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,6 +40,15 @@ class InfoBox extends StatelessWidget {
                       style: GoogleFonts.notoSansThai(
                           fontSize: 18,
                           color: const Color.fromARGB(255, 0, 0, 0))),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Obx(() => Text(
+                        studentController.selectedStudent.value?.stu_id ?? "",
+                        style: GoogleFonts.notoSansThai(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 0, 0, 0)),
+                      )),
                 ],
               ),
               const SizedBox(
@@ -51,6 +63,16 @@ class InfoBox extends StatelessWidget {
                       style: GoogleFonts.notoSansThai(
                           fontSize: 18,
                           color: const Color.fromARGB(255, 0, 0, 0))),
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  Obx(() => Text(
+                        studentController.selectedStudent.value?.stu_name ?? "",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.notoSansThai(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 0, 0, 0)),
+                      )),
                 ],
               ),
               const SizedBox(
@@ -65,6 +87,15 @@ class InfoBox extends StatelessWidget {
                       style: GoogleFonts.notoSansThai(
                           fontSize: 18,
                           color: const Color.fromARGB(255, 0, 0, 0))),
+                  const SizedBox(
+                    width: 18,
+                  ),
+                  Obx(() => Text(
+                        studentController.selectedStudent.value?.stu_tel ?? "",
+                        style: GoogleFonts.notoSansThai(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 0, 0, 0)),
+                      )),
                 ],
               ),
             ],

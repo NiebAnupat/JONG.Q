@@ -54,7 +54,7 @@ class _MemberPageState extends State<MemberPage> {
               visible: isVisible,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => const OldMember());
+                  Get.to(() => OldMember());
                 },
                 // ignore: sort_child_properties_last
                 child: Text("รายเก่า",

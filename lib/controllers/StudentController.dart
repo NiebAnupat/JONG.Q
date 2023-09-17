@@ -10,6 +10,8 @@ import 'package:uuid/uuid.dart';
 
 class StudentController extends GetxController {
   final RxList<Student> _student = <Student>[].obs;
+  final Rx<Student> selectedStudent = Student().obs;
+  final RxBool isSelected = false.obs;
 
   List<Student> get student => _student;
 
@@ -23,10 +25,25 @@ class StudentController extends GetxController {
   Future<void> fetchStudent() async {
     try {
       final students = await StudentProvider.getAll();
-      if (students != null) {
+      if (students.isNotEmpty) {
         _student.value = students;
       } else {
         _student.value = <Student>[];
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> getSelectStudent(String id) async {
+    try {
+      final student = await StudentProvider.get(id);
+      if (student != null) {
+        selectedStudent.value = student;
+        isSelected.value = true;
+      } else {
+        selectedStudent.value = Student();
+        isSelected.value = false;
       }
     } catch (e) {
       rethrow;

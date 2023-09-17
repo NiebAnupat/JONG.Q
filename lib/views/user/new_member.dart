@@ -149,7 +149,11 @@ class NewMember extends StatelessWidget {
         );
         await Future.delayed(const Duration(seconds: 2));
         Get.back();
-        Get.off(() => const MessagePage());
+        final int queueLength =
+            await queueController.getBeforeQueueLength(newQueue.queue_id!);
+        Get.off(() => MessagePage(
+              queueLength: queueLength,
+            ));
       } catch (e) {
         Get.back();
         Get.snackbar('เกิดข้อผิดพลาด', 'ไม่สามารถจองคิวได้',

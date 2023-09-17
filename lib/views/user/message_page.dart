@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MessagePage extends StatelessWidget {
-  const MessagePage({super.key});
+  final int queueLength;
+  const MessagePage({super.key, required this.queueLength});
+  // const MessagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class MessagePage extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 200),
+            padding: const EdgeInsets.only(left: 35, right: 35, top: 150),
             child: Center(
               child: Column(children: [
                 Text("ดำเนินการจองคิวเสร็จสิ้น",
@@ -44,6 +46,21 @@ class MessagePage extends StatelessWidget {
                     style: GoogleFonts.notoSansThai(
                         fontSize: 20,
                         color: const Color.fromARGB(255, 0, 0, 0))),
+                const SizedBox(
+                  height: 40,
+                ),
+                Text("จำนวนคิวก่อนหน้าคุณ",
+                    style: GoogleFonts.notoSansThai(
+                        fontSize: 20,
+                        color: const Color.fromARGB(255, 0, 0, 0))),
+                const SizedBox(
+                  height: 30,
+                ),
+                Text("$queueLength",
+                    style: GoogleFonts.notoSansThai(
+                        fontSize: 30,
+                        color: const Color.fromARGB(255, 0, 0, 0))),
+
                 const SizedBox(
                   height: 80,
                 ),

@@ -38,8 +38,15 @@ class QueueController extends GetxController {
 
   Future<void> addQueue(Queue newQueue) async {
     await QueueProvider.create(newQueue);
-    queue.add(newQueue);
-    queue.refresh();
+  }
+
+  // get before queue length
+  Future<int> getBeforeQueueLength(String id) async {
+    var beforeQueue = (await QueueProvider.getAll())
+        ?.where((element) => element.isNotify == false)
+        .toList();
+    beforeQueue?.removeWhere((element) => element.queue_id == id);
+    return beforeQueue?.length ?? 0;
   }
 
   void removeQueue(Queue oldQueue) async {
@@ -56,9 +63,9 @@ class QueueController extends GetxController {
 
   Future<List<Student>> getStudentInQueue() async {
     List<Student> students = [];
-    for (var i = 0; i < queue.value.length; i++) {
+    for (var i = 0; i < queue.length; i++) {
       var student = (await StudentProvider.getAll())
-          .firstWhere((element) => element.stu_id == queue.value[i].stu_id);
+          .firstWhere((element) => element.stu_id == queue[i].stu_id);
       students.add(student);
     }
     return students;

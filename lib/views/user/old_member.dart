@@ -1,15 +1,91 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:jong_q/controllers/QueueContorller.dart';
+import 'package:jong_q/controllers/StudentController.dart';
 import 'package:jong_q/lib/AppColor.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jong_q/models/Queue.dart';
+import 'package:jong_q/models/Student.dart';
 import 'package:jong_q/views/user/message_page.dart';
 import 'package:jong_q/components/user/info_box.dart';
+import 'package:uuid/uuid.dart';
 
 class OldMember extends StatelessWidget {
-  const OldMember({super.key});
+  OldMember({super.key});
+  final StudentController studentController = Get.put(StudentController());
+  final QueueController queueController = Get.put(QueueController());
+  final idController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    void searchStudent() async {
+      final id = idController.text;
+      if (id.isEmpty) {
+        Get.snackbar('กรุณากรอกรหัสนักศึกษา', '',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 2));
+        return;
+      }
+
+      try {
+        await studentController.getSelectStudent(id);
+      } catch (e) {
+        studentController.isSelected.value = false;
+        studentController.selectedStudent.value = Student();
+        Get.snackbar('ไม่พบข้อมูลนักศึกษา', '',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 2));
+      }
+    }
+
+    void makeQueue() async {
+      final student = studentController.selectedStudent.value;
+      final newQueue = Queue(
+        queue_id: const Uuid().v4(),
+        stu_id: student.stu_id,
+        isNotify: false,
+      );
+
+      try {
+        // loading dialog
+        Get.defaultDialog(
+            title: 'กำลังจองคิว...',
+            titlePadding: const EdgeInsets.all(20),
+            titleStyle: GoogleFonts.notoSansThai(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 0, 0, 0)),
+            content: const Center(
+                child: GFLoader(
+              type: GFLoaderType.ios,
+            )),
+            contentPadding: const EdgeInsets.all(40),
+            barrierDismissible: false);
+
+        await queueController.addQueue(newQueue);
+
+        final int queueLength =
+            await queueController.getBeforeQueueLength(newQueue.queue_id!);
+        Get.off(() => MessagePage(
+              queueLength: queueLength,
+            ));
+      } catch (e) {
+        Get.snackbar('จองคิวไม่สำเร็จ', 'กรุณาลองใหม่อีกครั้ง',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 2));
+      }
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.primaryColor,
@@ -38,6 +114,7 @@ class OldMember extends StatelessWidget {
                         color: const Color.fromARGB(255, 0, 0, 0))),
                 // search
                 TextField(
+                  controller: idController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelStyle: TextStyle(
@@ -60,12 +137,13 @@ class OldMember extends StatelessWidget {
                       ),
                     ),
                   ),
+                  onEditingComplete: searchStudent,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: searchStudent,
                   icon: const Icon(Icons.search,
                       color: Color.fromARGB(255, 255, 255, 255)),
                   label: Text(
@@ -97,20 +175,21 @@ class OldMember extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        editDialog(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.primaryColor,
-                        minimumSize: const Size(100, 50),
-                      ),
-                      child: Text("แก้ไข",
-                          style: GoogleFonts.notoSansThai(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: const Color.fromARGB(255, 255, 255, 255))),
-                    ),
+                    Obx(() => ElevatedButton(
+                          onPressed: studentController.isSelected.value
+                              ? () => editDialog(context)
+                              : null,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColor.primaryColor,
+                            minimumSize: const Size(100, 50),
+                          ),
+                          child: Text("แก้ไข",
+                              style: GoogleFonts.notoSansThai(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color.fromARGB(
+                                      255, 255, 255, 255))),
+                        )),
                   ],
                 ),
                 const SizedBox(
@@ -119,19 +198,19 @@ class OldMember extends StatelessWidget {
 
                 // book queue
                 // book queue
-                ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => const MessagePage());
-                    },
-                    // ignore: sort_child_properties_last
-                    child: Text("จองคิว",
-                        style: GoogleFonts.notoSansThai(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 255, 255, 255))),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.primaryColor,
-                      minimumSize: const Size(200, 80),
+                Obx(() => ElevatedButton(
+                      onPressed: studentController.isSelected.value
+                          ? () => makeQueue()
+                          : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.primaryColor,
+                        minimumSize: const Size(200, 80),
+                      ),
+                      child: Text("จองคิว",
+                          style: GoogleFonts.notoSansThai(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 255, 255, 255))),
                     )),
               ],
             ),

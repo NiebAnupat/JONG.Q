@@ -149,24 +149,21 @@ class UserLogin extends StatelessWidget {
                     const SizedBox(
                       height: 40,
                     ),
-
-                    // login button
                     ElevatedButton(
-                        onPressed: login,
-                        // ignore: sort_child_properties_last
-                        child: Text("Login",
-                            style: GoogleFonts.notoSansThai(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color:
-                                    const Color.fromARGB(255, 255, 255, 255))),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          minimumSize: const Size(240, 55),
-                        )),
+                      onPressed: login,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColor.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        minimumSize: const Size(240, 55),
+                      ),
+                      child: Text("Login",
+                          style: GoogleFonts.notoSansThai(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 255, 255, 255))),
+                    ),
                   ],
                 )),
           ],

@@ -11,8 +11,6 @@ class Student {
     stu_tel = formatTel(json['stu_tel']);
   }
 
-  get studentId => null;
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['stu_id'] = stu_id;
