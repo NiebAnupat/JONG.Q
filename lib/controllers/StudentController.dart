@@ -9,48 +9,32 @@ import 'package:jong_q/providers/Student.dart';
 import 'package:uuid/uuid.dart';
 
 class StudentController extends GetxController {
-  final RxList<Student> _student = <Student>[
-    Student(
-        stu_id: '6400922',
-        stu_name: 'นายอนุภัทร แก้วมี',
-        stu_tel: '0661128806'),
-    Student(
-        stu_id: '6400923',
-        stu_name: 'นางสาวอนุภาพร ฟองสุข',
-        stu_tel: '0815372341'),
-    Student(
-        stu_id: '6400924', stu_name: 'นายอนุภาพ ฟองสุข', stu_tel: '0815372341')
-  ].obs;
+  final RxList<Student> _student = <Student>[].obs;
 
   List<Student> get student => _student;
 
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+    await fetchStudent();
+  }
+
+  // fetch student
+  Future<void> fetchStudent() async {
+    try {
+      final students = await StudentProvider.getAll();
+      if (students != null) {
+        _student.value = students;
+      } else {
+        _student.value = <Student>[];
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> addStudent(Student newStudent) async {
     try {
-      Get.defaultDialog(
-          title: 'กำลังบันทึกข้อมูลนักศึกษา',
-          content: const Center(
-              child: GFLoader(
-            type: GFLoaderType.ios,
-          )),
-          contentPadding: const EdgeInsets.all(20),
-          barrierDismissible: false);
-      await StudentProvider.create(newStudent);
-      Get.back();
-      // show success dialog
-      Get.defaultDialog(
-        title: 'บันทึกข้อมูลสำเร็จ',
-        content: const Center(
-            child: Icon(
-          Icons.check_circle,
-          color: Colors.green,
-          size: 100,
-        )),
-        contentPadding: const EdgeInsets.all(20),
-        barrierDismissible: false,
-      );
-      await Future.delayed(const Duration(milliseconds: 15000));
-      Get.back();
-
       // update student list
       _student.add(newStudent);
 

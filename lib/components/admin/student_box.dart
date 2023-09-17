@@ -3,25 +3,29 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gsheets/gsheets.dart';
+import 'package:jong_q/controllers/QueueContorller.dart';
+import 'package:jong_q/models/Queue.dart';
 import 'package:jong_q/models/Student.dart';
 import 'package:permission_handler/permission_handler.dart' as p;
 import 'package:background_sms/background_sms.dart';
 
 class StudentBox extends StatelessWidget {
   final Student student;
-  const StudentBox({super.key, required this.student});
+  final Queue queue;
+  final QueueController queueController;
+  const StudentBox(
+      {super.key,
+      required this.student,
+      required this.queue,
+      required this.queueController});
 
   @override
   Widget build(BuildContext context) {
     void sendSMS() async {
-      if (kDebugMode) {
-        print(await p.Permission.sms.status);
-      }
       if (await p.Permission.sms.status.isGranted) {
         final phoneNumber = student.stu_tel!;
         final message =
             'แจ้งนักศึกษา ชื่อ ${student.stu_name}\nรหัสนักศึกษา ${student.stu_id}\nขณะนี้กำลังจะถึงคิวของคุณแล้ว\nกรุณาเดินทางมาส่งเอกสารภายใน 10 นาที\n*หากไม่มาภายในเวลาที่กำหนดขออนุญาตเรียกคิวถัดไป';
-        // final message = 'ถึงคิวของคุณแล้ว\n${student.stu_name}';
         SmsStatus result = await BackgroundSms.sendMessage(
             phoneNumber: phoneNumber, message: message);
 
@@ -33,6 +37,9 @@ class StudentBox extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
               snackPosition: SnackPosition.BOTTOM,
               duration: const Duration(seconds: 2));
+
+          //  dequeue and update
+          queueController.removeQueue(queue);
         } else {
           Get.snackbar('ส่ง SMS ไม่สำเร็จ', 'กรุณาลองใหม่อีกครั้ง',
               backgroundColor: Colors.red,

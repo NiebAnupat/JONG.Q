@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:jong_q/main.dart';
 import 'user/login_page.dart';
 import 'admin/login_page.dart';
 import 'package:flutter/material.dart';

@@ -2,16 +2,51 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/lib/AppColor.dart';
+import 'package:jong_q/providers/AdminProvider.dart';
 import 'package:jong_q/views/admin/home_page.dart';
 import 'package:jong_q/views/role_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminLogin extends StatelessWidget {
   const AdminLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final usernameController = TextEditingController();
+    final passwordController = TextEditingController();
+
     void login() async {
-      Get.off(() => AdminHome());
+      final username = usernameController.text;
+      final password = passwordController.text;
+
+      // check if username and password is empty
+      if (username.isEmpty || password.isEmpty) {
+        Get.snackbar('กรุณากรอกข้อมูลให้ครบถ้วน', '',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 2));
+        return;
+      }
+
+      try {
+        // check if username and password is correct
+        await AdminProvider.login(username, password);
+        final sharedPref = await SharedPreferences.getInstance();
+        await sharedPref.setString('username', username);
+        await sharedPref.setString('password', password);
+        await sharedPref.setString('role', 'admin');
+
+        Get.off(() => AdminHome());
+      } catch (e) {
+        Get.snackbar('เข้าสู่ระบบไม่สำเร็จ', 'กรุณาตรวจสอบความถูกต้องของข้อมูล',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 2));
+      }
     }
 
     return Scaffold(
@@ -46,11 +81,13 @@ class AdminLogin extends StatelessWidget {
                   ),
                   // username
                   TextField(
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                    controller: usernameController,
+                    style: GoogleFonts.notoSansThai(
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 20),
                     decoration: InputDecoration(
                       labelText: "Username",
-                      labelStyle: TextStyle(
+                      labelStyle: GoogleFonts.notoSansThai(
                         color:
                             const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
                         fontSize: 18,
@@ -77,12 +114,14 @@ class AdminLogin extends StatelessWidget {
 
                   // password
                   TextField(
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                    controller: passwordController,
+                    style: GoogleFonts.notoSansThai(
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 20),
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: "Password",
-                      labelStyle: TextStyle(
+                      labelStyle: GoogleFonts.notoSansThai(
                         color:
                             const Color.fromARGB(255, 0, 0, 0).withOpacity(0.8),
                         fontSize: 18,

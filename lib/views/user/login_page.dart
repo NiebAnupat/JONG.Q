@@ -5,6 +5,7 @@ import 'package:jong_q/providers/UserProvider.dart';
 import 'package:jong_q/views/role_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/user/member_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserLogin extends StatelessWidget {
   const UserLogin({super.key});
@@ -32,9 +33,14 @@ class UserLogin extends StatelessWidget {
       try {
         // check if username and password is correct
         await UserProvider.login(username, password);
+        final sharedPref = await SharedPreferences.getInstance();
+        await sharedPref.setString('username', username);
+        await sharedPref.setString('password', password);
+        await sharedPref.setString('role', 'user');
+
         Get.off(() => const MemberPage());
       } catch (e) {
-        Get.snackbar('เข้าสู่ระบบไม่สำเร็จ', 'กรุณาตรงสอบความถูกต้องของข้อมูล',
+        Get.snackbar('เข้าสู่ระบบไม่สำเร็จ', 'กรุณาตรวจสอบความถูกต้องของข้อมูล',
             backgroundColor: Colors.red,
             colorText: Colors.white,
             margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
@@ -79,11 +85,12 @@ class UserLogin extends StatelessWidget {
                     // username
                     TextField(
                       controller: usernameController,
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                      style: GoogleFonts.notoSansThai(
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 20),
                       decoration: InputDecoration(
                         labelText: "Username",
-                        labelStyle: TextStyle(
+                        labelStyle: GoogleFonts.notoSansThai(
                           color: const Color.fromARGB(255, 0, 0, 0)
                               .withOpacity(0.8),
                           fontSize: 18,
@@ -112,12 +119,13 @@ class UserLogin extends StatelessWidget {
                     // buildText("Password"),
                     TextField(
                       controller: passwordController,
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
+                      style: GoogleFonts.notoSansThai(
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 20),
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: "Password",
-                        labelStyle: TextStyle(
+                        labelStyle: GoogleFonts.notoSansThai(
                           color: const Color.fromARGB(255, 0, 0, 0)
                               .withOpacity(0.8),
                           fontSize: 18,

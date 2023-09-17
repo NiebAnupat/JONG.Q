@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/user/login_page.dart';
 import 'package:jong_q/views/user/new_member.dart';
 import 'package:jong_q/views/user/old_member.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MemberPage extends StatefulWidget {
   const MemberPage({super.key});
@@ -18,15 +19,19 @@ class _MemberPageState extends State<MemberPage> {
 
   @override
   Widget build(BuildContext context) {
+    void signout() async {
+      final sharedPref = await SharedPreferences.getInstance();
+      await sharedPref.clear();
+      Get.offAll(() => const UserLogin());
+    }
+
     return Scaffold(
       backgroundColor: AppColor.primaryColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
+            onPressed: signout,
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
               color: AppColor.primaryColor,
@@ -34,9 +39,7 @@ class _MemberPageState extends State<MemberPage> {
             )),
         actions: [
           IconButton(
-              onPressed: () {
-                Get.offAll(() => const UserLogin());
-              },
+              onPressed: signout,
               icon: const Icon(
                 Icons.logout,
                 color: Color.fromARGB(255, 255, 255, 255),

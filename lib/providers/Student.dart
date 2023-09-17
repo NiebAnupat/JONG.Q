@@ -25,6 +25,20 @@ class StudentProvider {
     return student;
   }
 
+  static Future<List<Student>> getAll() async {
+    try {
+      final studentSheet = await GoogleSheet.studentSheet;
+      var allRows = await studentSheet.values.map.allRows();
+      if (allRows == null) {
+        return [];
+      }
+      var students = allRows.map((e) => Student.fromJson(e)).toList();
+      return students;
+    } catch (e) {
+      return [];
+    }
+  }
+
   static Future<bool> isAlreadyExist(String id) async {
     try {
       final studentSheet = await GoogleSheet.studentSheet;

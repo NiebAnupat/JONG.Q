@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:jong_q/components/admin/student_box.dart';
 import 'package:jong_q/controllers/QueueContorller.dart';
+import 'package:jong_q/controllers/StudentController.dart';
 import 'package:jong_q/models/Student.dart';
 
 import 'package:get/get.dart';
@@ -8,11 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/admin/login_page.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminHome extends StatelessWidget {
   AdminHome({super.key});
 
   final queueController = Get.put(QueueController());
+  final studentController = Get.put(StudentController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class AdminHome extends StatelessWidget {
       final status = await Permission.sms.status;
       if (status.isDenied) {
         Get.snackbar(
-            'ไม่สามารถเข้าถึง SMS ได้', 'กรุณาเปิดสิทธิ์การเข้าถึง SMS',
+            'ไม่สามารถเข้าถึง SMS ได้', 'กรุณาอนุญาตสิทธิ์การเข้าถึง SMS',
             backgroundColor: Colors.red,
             colorText: Colors.white,
             margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
@@ -56,7 +59,10 @@ class AdminHome extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.off(() => const AdminLogin());
+                SharedPreferences.getInstance().then((value) {
+                  value.clear();
+                  Get.offAll(() => const AdminLogin());
+                });
               },
               icon: const Icon(
                 Icons.logout,
@@ -68,22 +74,24 @@ class AdminHome extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding:
-                const EdgeInsets.only(top: 20, left: 20, bottom: 10, right: 20),
-            child: Row(children: [
-              Text("จำนวนคิวที่รออยู่",
-                  style: GoogleFonts.notoSansThai(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 0, 0, 0))),
-              const Spacer(),
-              Text("${queueController.queue.value.length}\t\t\t\t\tคิว",
-                  style: GoogleFonts.notoSansThai(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 0, 0, 0)))
-            ]),
-          ),
+              padding: const EdgeInsets.only(
+                  top: 20, left: 20, bottom: 10, right: 20),
+              child: Obx(
+                () => Row(children: [
+                  Text("จำนวนคิวที่รออยู่",
+                      style: GoogleFonts.notoSansThai(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 0, 0, 0))),
+                  const Spacer(),
+                  Text("${queueController.queue.length}\t\t\t\t\tคิว",
+                      // Text("${queueController.temp}\t\t\t\t\tคิว",
+                      style: GoogleFonts.notoSansThai(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 0, 0, 0)))
+                ]),
+              )),
           const Divider(
             // height: 10,
             thickness: 1,
@@ -100,14 +108,40 @@ class AdminHome extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   } else {
-                    return ListView.builder(
-                      itemCount: queueController.queue.value.length,
-                      itemBuilder: (context, index) {
-                        return StudentBox(
-                          student: queueController.getStudentInQueue()[index],
-                        );
-                      },
-                    );
+                    if (queueController.queue.isNotEmpty) {
+                      return ListView.builder(
+                        itemCount: queueController.queue.length,
+                        itemBuilder: (context, index) {
+                          return FutureBuilder(
+                              future: queueController.getStudentInQueue(),
+                              builder: (context,
+                                  AsyncSnapshot<List<Student>> sanpshot) {
+                                if (sanpshot.hasData) {
+                                  return StudentBox(
+                                    student: sanpshot.data![index],
+                                    queue:
+                                        queueController.queue.elementAt(index),
+                                    queueController: queueController,
+                                  );
+                                } else {
+                                  return const Center(
+                                    heightFactor: 13,
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              });
+                        },
+                      );
+                    } else {
+                      return Center(
+                        heightFactor: 13,
+                        child: Text("ไม่มีข้อมูล",
+                            style: GoogleFonts.notoSansThai(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: const Color.fromARGB(255, 0, 0, 0))),
+                      );
+                    }
                   }
                 })),
           ),
