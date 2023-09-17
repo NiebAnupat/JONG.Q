@@ -41,7 +41,7 @@ class MessagePage extends StatelessWidget {
                 child: Column(children: [
                   Text("ดำเนินการจองคิวเสร็จสิ้น",
                       style: GoogleFonts.notoSansThai(
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: const Color.fromARGB(255, 0, 0, 0))),
                   const SizedBox(
@@ -74,7 +74,7 @@ class MessagePage extends StatelessWidget {
                     height: 80,
                   ),
 
-                  Text("รบกวรทำแบบประเมิณความพึงพอใจ",
+                  Text("รบกวนทำแบบประเมินความพึงพอใจ",
                       style: GoogleFonts.notoSansThai(
                           fontSize: 20, color: AppColor.primaryColor)),
                   Text("เพื่อให้ทางเรานำไปปรับปรุงให้ดียิ่งขึ้น",
@@ -90,7 +90,7 @@ class MessagePage extends StatelessWidget {
                           throw Exception('Could not launch $url');
                         }
                       },
-                      child: Text("เข้าสู่แบบประเมิณ",
+                      child: Text("เข้าสู่แบบประเมิน",
                           style: GoogleFonts.notoSansThai(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,

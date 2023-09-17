@@ -56,6 +56,7 @@ class AdminHome extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: const Color.fromARGB(255, 0, 0, 0))),
         centerTitle: true,
+        leading: null,
         actions: [
           IconButton(
               onPressed: () {

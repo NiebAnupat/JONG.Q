@@ -45,7 +45,8 @@ class NewMember extends StatelessWidget {
       final isStudentExist =
           await StudentProvider.isAlreadyExist(idController.text);
       if (isStudentExist) {
-        Get.snackbar('ข้อมูลนักศึกษาซ้ำ', '',
+        Get.snackbar('ข้อมูลนักศึกษาซ้ำ',
+            'นักศึกษารหัส ${idController.text} มีอยู่ในระบบแล้ว',
             backgroundColor: Colors.red,
             colorText: Colors.white,
             margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),

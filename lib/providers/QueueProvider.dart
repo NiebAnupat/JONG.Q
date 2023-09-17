@@ -42,7 +42,6 @@ class QueueProvider {
     if (index == -1) {
       return null;
     }
-    await queueSheet.values.map.insertRow(index + 3, newQue.toJson());
-    await queueSheet.deleteRow(index + 2);
+    await queueSheet.values.map.insertRow(index + 2, newQue.toJson());
   }
 }

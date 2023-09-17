@@ -20,10 +20,8 @@ class Student {
   }
 
   String formatTel(String tel) {
-    // add 0 to first
-    if (tel.length == 9) {
-      tel = "0$tel";
-    }
+    tel = tel.substring(2);
+    tel = '0$tel';
     return tel;
   }
 }

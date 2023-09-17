@@ -99,22 +99,10 @@ class StudentController extends GetxController {
   // update student
   Future<void> updateStudent(Student newStudent) async {
     try {
-      Get.defaultDialog(
-        title: 'กำลังค้นหาข้อมูล',
-        content: const Center(
-            child: GFLoader(
-          type: GFLoaderType.ios,
-        )),
-        contentPadding: const EdgeInsets.all(20),
-        barrierDismissible: false,
-      );
-
       // update student list
       await StudentProvider.update(newStudent.stu_id!, newStudent);
       // update selected student
       selectedStudent.value = newStudent;
-
-      Get.back();
 
       // update student list
       fetchStudent();
