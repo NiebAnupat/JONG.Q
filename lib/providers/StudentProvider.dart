@@ -47,12 +47,6 @@ class StudentProvider {
       if (allRows == null) {
         return null;
       }
-      var student = allRows.map((e) => Student.fromJson(e)).firstWhere(
-            (e) => e.stu_id == id,
-          );
-      if (student == null) {
-        return null;
-      }
 
       var index = allRows.indexWhere((e) => e['stu_id'] == id);
       if (index == -1) {
@@ -74,8 +68,9 @@ class StudentProvider {
       }
       var student = allRows.map((e) => Student.fromJson(e)).firstWhere(
             (e) => e.stu_id == id,
+            orElse: () => Student(),
           );
-      if (student == null) {
+      if (student.stu_id == null) {
         return false;
       }
       return true;

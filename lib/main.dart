@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/views/admin/home_page.dart';
 import 'package:jong_q/views/user/member_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
