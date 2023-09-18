@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gsheets/gsheets.dart';
 import 'package:jong_q/controllers/QueueContorller.dart';
 import 'package:jong_q/models/Queue.dart';
 import 'package:jong_q/models/Student.dart';

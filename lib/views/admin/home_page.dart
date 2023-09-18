@@ -38,7 +38,7 @@ class AdminHome extends StatelessWidget {
       }
     }
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       // do something
       if (kDebugMode) {
         print("Build Completed");

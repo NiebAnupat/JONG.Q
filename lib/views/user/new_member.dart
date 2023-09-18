@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:jong_q/controllers/QueueContorller.dart';
-import 'package:jong_q/controllers/StudentController.dart';
 import 'package:jong_q/lib/AppColor.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jong_q/models/Queue.dart';
@@ -16,7 +15,6 @@ class NewMember extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final StudentController studentController = Get.put(StudentController());
     final QueueController queueController = Get.put(QueueController());
 
     final nameController = TextEditingController();
